@@ -1,12 +1,14 @@
 var app = angular.module('engApp', []);
+
 app.controller('engCtrl', function($scope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
     $scope.init = function() {
+        $scope.step = 'introduction'
         $scope.returning = localStorage.getItem('eng-returning')
-        if ($scope.returning) {} else {
-            localStorage.setItem('eng-returning', true)
+        if (!$scope.returning) {
+            // localStorage.setItem('eng-returning', true)
+            // DONT FORGET TO UNCOMMENT ABOVE
         }
+        $scope.returning = false
 
         function capitalize(category) {
             return category.charAt(0).toUpperCase() + category.slice(1);
@@ -60,6 +62,7 @@ app.controller('engCtrl', function($scope) {
             "sets": [1, 4, 2],
             "size": 1
         }, ];
+        
         var div = d3.select("#venn")
         div.datum(sets).call(chart);
 
@@ -171,5 +174,10 @@ app.controller('engCtrl', function($scope) {
             return 'Returning to square one . . . https://www.fasthorseinc.com/wp-content/uploads/2012/05/12bneuralizer.png'
         }
     }
+
+    $scope.toggleStep = function(newStep) {
+        $scope.step = newStep
+    }
+    
     $scope.init();
 });

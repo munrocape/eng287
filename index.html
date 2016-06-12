@@ -34,35 +34,23 @@
    <body class="code-snippets-visible">
       <!-- Primary Page Layout
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-      <div id='container' class="container" ng-app="engApp" ng-controller="engCtrl">
+      <div id='container' class="container" ng-app="engApp" ng-controller="engCtrl" ng-cloak>
       <section class="header">
-         <div ng-show='!returning'>
+         <h3 class="title"> On Ergodic, electronic, & interactive texts</h3>
+         <p>A digital translation of Marie-Laure Ryan's "Hypertext: The Functions and Effects of Selective Interactivity"</p>
+         <p>Zach Munro-Cape, 999307584</p>
+         <p class='line-break'><br></p>
+         <div ng-show='!returning && step === "introduction"'>
             <span> Hello, intrepid visitor. As this is your first time, I thought it best to introduce each term individually. On your next visit this message will not appear - however - you can find the individual definitions, along with other handy links, in the navigation bar that will be at the top of the page. <br> If you wish to "reset" your experience, paste the following into your javascript console.</span>
-            <pre class="code-example">
+<pre class="code-example">
 <code aria-label="javascipt code to toggle between first time or returning visitor" class="code-example-body prettyprint">$('#container').scope().toggleFirstVisit()
 </code>
 </pre>
-         </div>
-         <h2 class="title">Ergodic, electronic, & interactive texts</h2>
-         <h3>Defining & understanding through examples</h3>
-         <h4>Zach Munro-Cape</h4>
-         <div class="value-props row">
-            <div class="four columns value-prop">
-               <img class="value-img" style='height:100px;width:100px' src="images/knot.png">
-               Ergodic
-            </div>
-            <div class="four columns value-prop">
-               <img class="value-img" style='height:100px;width:100px' src="images/electronic.png">
-               Electronic
-            </div>
-            <div class="four columns value-prop">
-               <img class="value-img" style='height:100px;width:100px' src="images/interactive.png">
-               Interactive
-            </div>
+         <button ng-click='toggleStep("interactive")' class="button button-primary">Learn about interactivity</button>
          </div>
       </section>
       <div class="navbar-spacer"></div>
-      <nav class="navbar">
+      <nav ng-show='returning' class="navbar">
          <div class="container">
             <ul class="navbar-list">
                <li class="navbar-item">
@@ -122,12 +110,37 @@
             </ul>
          </div>
       </nav>
-      <!-- Tables -->
-      <div class="docs-section" id="venn-section">
-      <div class='row'>
+
+      <div ng-show='step === "interactive" || returning' class='row'>
+         <div class='category-header center'>
+            <img class='section-icon' src='images/interactive.png'></img>
+            <p class='underline'>Interactive</p>
+         </div>
+         <div class='center'>
+            <button ng-click='toggleStep("electronic")' class="button button-primary center">Continue to electronic texts</button>
+         </div>
+      </div>
+
+<!--       <div class="value-props row">
+         <div class="four columns value-prop">
+            <img class="value-img" style='height:100px;width:100px' src="images/knot.png">
+            Ergodic
+         </div>
+         <div class="four columns value-prop">
+            <img class="value-img" style='height:100px;width:100px' src="images/electronic.png">
+            Electronic
+         </div>
+         <div class="four columns value-prop">
+            <img class="value-img" style='height:100px;width:100px' src="images/interactive.png">
+            Interactive
+         </div>
+      </div> -->
+      
+      <div ng-show='step === "venn"|| returning' class='row'>
          <div style='margin-left:150px' id='venn'></div>
       </div>
-      <h6 href='#venn-table' class="docs-header">Reference table</h6>
+      <div ng-show='step === "venn"|| returning'>
+         <h6 href='#venn-table' class="docs-header">Reference table</h6>
       <p id='table-description'>
          <span class='indent'></span> One way to categorize the sections of the venn diagram is to assign a value to each type of text - 1 for ergodic, 2 for interactive, and 4 for electronic. If a definition occupies 1 or some areas, we add up the assigned value of each respective circle to find its unique value.
       </p>
@@ -193,6 +206,8 @@
             </tbody>
          </table>
       </div>
+      </div>
+      
    </body>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
    <script src="js/venn.js"></script>

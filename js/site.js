@@ -24,7 +24,6 @@ $(document).ready(function() {
     $document.on('click', closePopover)
     $('a[href^="#"]').on('click', smoothScroll)
     buildSnippets();
-    // swal({   title: "Non-electronic component",   text: "As you are currently reading on a computer, fundamentally that makes exploring non-electronic works difficult. The second component is a print out attachment - click continue to send the job to your printer.",   type: "info",   confirmButtonText: "Ok" });
   }
 
   function smoothScroll(e) {

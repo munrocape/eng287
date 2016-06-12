@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- Basic Page Needs
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <meta charset="utf-8">
+      <title>ENG287: Zach Munro-Cape</title>
+      <meta name="description" content="Exploring the differences between ergodic, electronic, and interactive texts">
+      <meta name="author" content="Zach Munro-Cape">
+      <meta name="keywords" content="ergodic texts,electronic texts,interactive texts">
+      
+      <!-- Mobile Specific Metas
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+      <!-- FONT
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+      
+      <!-- CSS
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/skeleton.css">
+      <link rel="stylesheet" href="css/custom.css">
+      
+      <!-- Scripts
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+      <script src="js/site.js"></script>
+      <script src='js/sweetalert.js'></script>
+      <link rel="stylesheet" href="css/sweetalert.css">
+   </head>
+   <body class="code-snippets-visible">
+      <!-- Primary Page Layout
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <div id='container' class="container" ng-app="engApp" ng-controller="engCtrl">
+      <section class="header">
+         <div ng-show='!returning'>
+            <span> Hello, intrepid visitor. As this is your first time, I thought it best to introduce each term individually. On your next visit this message will not appear - however - you can find the individual definitions, along with other handy links, in the navigation bar that will be at the top of the page. <br> If you wish to "reset" your experience, paste the following into your javascript console.</span>
+            <pre class="code-example">
+<code aria-label="javascipt code to toggle between first time or returning visitor" class="code-example-body prettyprint">$('#container').scope().toggleFirstVisit()
+</code>
+</pre>
+         </div>
+         <h2 class="title">Ergodic, electronic, & interactive texts</h2>
+         <h3>Defining & understanding through examples</h3>
+         <h4>Zach Munro-Cape</h4>
+         <div class="value-props row">
+            <div class="four columns value-prop">
+               <img class="value-img" style='height:100px;width:100px' src="images/knot.png">
+               Ergodic
+            </div>
+            <div class="four columns value-prop">
+               <img class="value-img" style='height:100px;width:100px' src="images/electronic.png">
+               Electronic
+            </div>
+            <div class="four columns value-prop">
+               <img class="value-img" style='height:100px;width:100px' src="images/interactive.png">
+               Interactive
+            </div>
+         </div>
+      </section>
+      <div class="navbar-spacer"></div>
+      <nav class="navbar">
+         <div class="container">
+            <ul class="navbar-list">
+               <li class="navbar-item">
+                  <a class="navbar-link" href="#" data-popover="#electronicNavPopover">Electronic</a>
+                  <div id="electronicNavPopover" class="popover">
+                     <ul class="popover-list">
+                        <li class="popover-item">
+                           <a class="popover-link" href="#interactive-definition">Definition</a>
+                        </li>
+                        <li class="popover-item">
+                           <a class="popover-link" href="#interactive-examples">Examples</a>
+                        </li>
+                        <li class="popover-item">
+                           <a class="popover-link" href="#buttons">Motivations for digitality</a>
+                        </li>
+                     </ul>
+                  </div>
+               </li>
+               <li class="navbar-item">
+                  <a class="navbar-link" href="#" data-popover="#ergodicNavPopover">Ergodic</a>
+                  <div id="ergodicNavPopover" class="popover">
+                     <ul class="popover-list">
+                        <li class="popover-item">
+                           <a class="popover-link" href="#interactive-definition">Definition</a>
+                        </li>
+                        <li class="popover-item">
+                           <a class="popover-link" href="#interactive-examples">Examples</a>
+                        </li>
+                        <li class="popover-item">
+                           <a class="popover-link" href="#buttons">Motivations for ergodicity</a>
+                        </li>
+                     </ul>
+                  </div>
+               </li>
+               <li class="navbar-item">
+                  <a class="navbar-link" href="#" data-popover="#interactiveNavPopover">Interactive</a>
+                  <div id="interactiveNavPopover" class="popover">
+                     <ul class="popover-list">
+                        <li class="popover-item">
+                           <a class="popover-link" href="#interactive-definition">Definition</a>
+                        </li>
+                        <li class="popover-item">
+                           <a class="popover-link" href="#interactive-examples">Examples</a>
+                        </li>
+                        <li class="popover-item">
+                           <a class="popover-link" href="#interactive-varieties">Varieties of interaction</a>
+                        </li>
+                        <li class="popover-item">
+                           <a class="popover-link" href="#interactive-motivations">Motivations for interaction</a>
+                        </li>
+                     </ul>
+                  </div>
+               </li>
+               <li class='navbar-item'>
+                  <a class='navbar-link' aria-label='Venn diagram representation of ergodic, electronic, and interactive texts. Contains the same information as the following table' href="#venn-section">Venn diagram</a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+      <!-- Tables -->
+      <div class="docs-section" id="venn-section">
+      <div class='row'>
+         <div style='margin-left:150px' id='venn'></div>
+      </div>
+      <h6 href='#venn-table' class="docs-header">Reference table</h6>
+      <p id='table-description'>
+         <span class='indent'></span> One way to categorize the sections of the venn diagram is to assign a value to each type of text - 1 for ergodic, 2 for interactive, and 4 for electronic. If a definition occupies 1 or some areas, we add up the assigned value of each respective circle to find its unique value.
+      </p>
+      <div class="docs-example">
+         <table class="u-full-width">
+            <thead>
+               <tr>
+                  <th>Section</th>
+                  <th>Electronic?</th>
+                  <th>Interactive?</th>
+                  <th>Ergodic?</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>0: <a href="" ng-click='presentSweetAlert(0)'>A book ?</a></td>
+                  <td><button disabled aria-label='is electronic' class="button-error">No</button></td>
+                  <td><button disabled aria-label='is interactive' class="button-error">No</button></td>
+                  <td><button disabled aria-label='is ergodic' class="button-error">No</button></td>
+               </tr>
+               <tr>
+                  <td>1: <a ng-click='presentSweetAlert(1)'>Cattle/text interaction</a></td>
+                  <td><button disabled class="button-error">No</button></td>
+                  <td><button disabled class="button-error">No</button></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+               </tr>
+               <tr>
+                  <td>2: <a href="" ng-click='presentSweetAlert(2)'>Human conversation ?</a></td>
+                  <td><button disabled class="button-error">No</button></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+                  <td><button disabled class="button-error">No</button></td>
+               </tr>
+               <tr>
+                  <td>3: <a href="" ng-click='presentSweetAlert(3)'>CYOA ?</a></td>
+                  <td><button disabled class="button-error">No</button></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+               </tr>
+               <tr>
+                  <td>4: <a href="" ng-click='presentSweetAlert(4)'>Wikipedia ?</a></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+                  <td><button disabled class="button-error">No</button></td>
+                  <td><button disabled class="button-error">No</button></td>
+               </tr>
+               <tr>
+                  <td>5: <a href="" ng-click='presentSweetAlert(5)'>???</a></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+                  <td><button disabled class="button-error">No</button></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+               </tr>
+               <tr>
+                  <td>6: <a href='' aria-label='further information regarding electronic, interactive, and non-ergodic texts' ng-click='presentSweetAlert(6)'>IRC</a></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+                  <td><button disabled class="button-error">No</button></td>
+               </tr>
+               <tr>
+                  <td>7: <a href="" aria-label='further information regarding electronic, interactive, and non-ergodic texts' ng-click='presentSweetAlert(7)'>???</a></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+                  <td><button disabled class="button-success">Yes</button></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </body>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+   <script src="js/venn.js"></script>
+   <script src='js/controller.js'></script>
+</html>

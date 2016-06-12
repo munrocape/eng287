@@ -1,0 +1,140 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Intersection Tooltip venn.js example</title>
+<style>
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+</style>
+
+<!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="js/site.js"></script>
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/skeleton.css">
+<link rel="stylesheet" href="css/custom.css">
+</head>
+
+<body>
+    <div id="venn"></div>
+</body>
+
+<style>
+.venntooltip {
+  position: absolute;
+  text-align: center;
+  width: 128px;
+  height: 16px;
+  background: #333;
+  color: #ddd;
+  padding: 2px;
+  border: 0px;
+  border-radius: 8px;
+  opacity: 0;
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="js/venn.js"></script>
+<script>
+
+function capitalize(category) {
+    return category.charAt(0).toUpperCase() + category.slice(1);
+}
+
+function getTooltip(sets) {
+  var mapping = {
+    0: 'ergodic',
+    1: 'electronic',
+    2: 'interactive'
+  }
+  var tooltipText = ''
+  for (i = 0; i < sets.length; i++) { 
+      console.log(mapping[sets[i]])
+      if (i === 0) {
+        tooltipText = tooltipText + capitalize(mapping[sets[i]])
+      } else {
+        if (i === sets.length - 1) {
+          tooltipText = tooltipText + ' and ' + mapping[sets[i]]
+        } else {
+          tooltipText = tooltipText + ', ' + mapping[sets[i]]
+         
+      }
+        }
+  }
+  return tooltipText
+}
+var chart = venn.VennDiagram()
+                 .width(500)
+                 .height(500);
+var sets = [
+      {"sets": [0], "label": "Ergodic", "size": 10},
+        {"sets": [1], "label": "Electronic", "size": 10},
+        {"sets": [2], "label": "Interactive", "size": 10},
+        {"sets": [0, 1], "size": 2},
+        {"sets": [0, 2], "size": 2},
+        {"sets": [1, 2], "size": 2},
+        {"sets": [0, 1, 2], "size": 1},
+        ];
+var div = d3.select("#venn")
+div.datum(sets).call(chart);
+
+var tooltip = d3.select("body").append("div")
+    .attr("class", "venntooltip").style('width', '250px');
+
+div.selectAll("path")
+    .style("stroke-opacity", 0)
+    .style("stroke", "#fff")
+    .style("stroke-width", 0)
+
+div.selectAll("g")
+    .on("mouseover", function(d, i) {
+        // sort all the areas relative to the current item
+        venn.sortAreas(div, d);
+
+        // Display a tooltip with the current size
+        tooltip.transition().duration(400).style("opacity", .9);
+        console.log(d.sets)
+        var t = getTooltip(d.sets)
+        tooltip.text(t);
+        var width = t.length * 8
+        tooltip.style('width', width + 'px')
+        // highlight the current path
+        var selection = d3.select(this).transition("tooltip").duration(400);
+        selection.select("path")
+            .style("stroke-width", 3)
+            .style("fill-opacity", d.sets.length == 1 ? .4 : .1)
+            .style("stroke-opacity", 1);
+    })
+
+    .on("mousemove", function() {
+        tooltip.style("left", (d3.event.pageX) + "px")
+               .style("top", (d3.event.pageY - 28) + "px");
+    })
+
+    .on("mouseout", function(d, i) {
+        tooltip.transition().duration(400).style("opacity", 0);
+        var selection = d3.select(this).transition("tooltip").duration(400);
+        selection.select("path")
+            .style("stroke-width", 0)
+            .style("fill-opacity", d.sets.length == 1 ? .25 : .0)
+            .style("stroke-opacity", 0);
+    })
+    .on('click', function(d, i) {
+      console.log('d', d, 'i', i)
+    });
+</script>
+</html>

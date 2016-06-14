@@ -36,7 +36,7 @@
          <p>A digital translation of Marie-Laure Ryan's "Hypertext: The Functions and Effects of Selective Interactivity"</p>
          <p>Zach Munro-Cape, 999307584</p>
          <p ng-show='!returning' class='line-break'><br></p>
-         <div ng-show='step === "introduction" '>
+         <div ng-show='step === "introduction" && !returning'>
             <span> Hello, intrepid visitor. As this is your first time, I thought it best to introduce each term individually. On your next visit this message will not appear - however - you can find the individual definitions, along with other handy links, in the navigation bar that will be at the top of the page. <br> If you wish to "reset" your experience, paste the following into your javascript console.</span>
             <pre class="code-example">
 <code aria-label="javascipt code to toggle between first time or returning visitor" class="code-example-body prettyprint">$('#container').scope().toggleFirstVisit()

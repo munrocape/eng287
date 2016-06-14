@@ -8,21 +8,17 @@
       <meta name="description" content="Exploring the differences between ergodic, electronic, and interactive texts">
       <meta name="author" content="Zach Munro-Cape">
       <meta name="keywords" content="ergodic texts,electronic texts,interactive texts">
-      
       <!-- Mobile Specific Metas
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      
       <!-- FONT
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-      
       <!-- CSS
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <link rel="stylesheet" href="css/normalize.css">
       <link rel="stylesheet" href="css/skeleton.css">
       <link rel="stylesheet" href="css/custom.css">
-      
       <!-- Scripts
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -36,21 +32,20 @@
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <div id='container' class="container" ng-app="engApp" ng-controller="engCtrl" ng-cloak>
       <section class="header">
-         <h3 class="title"> On Ergodic, electronic, & interactive texts</h3>
+         <h3 class="title"> Exploring Ergodic, Electronic, & Interactive Texts</h3>
          <p>A digital translation of Marie-Laure Ryan's "Hypertext: The Functions and Effects of Selective Interactivity"</p>
          <p>Zach Munro-Cape, 999307584</p>
-         <p class='line-break'><br></p>
-         <div ng-show='!returning && step === "introduction"'>
+         <p ng-show='!returning' class='line-break'><br></p>
+         <div ng-show='step === "introduction" '>
             <span> Hello, intrepid visitor. As this is your first time, I thought it best to introduce each term individually. On your next visit this message will not appear - however - you can find the individual definitions, along with other handy links, in the navigation bar that will be at the top of the page. <br> If you wish to "reset" your experience, paste the following into your javascript console.</span>
-<pre class="code-example">
+            <pre class="code-example">
 <code aria-label="javascipt code to toggle between first time or returning visitor" class="code-example-body prettyprint">$('#container').scope().toggleFirstVisit()
 </code>
 </pre>
-         <button ng-click='toggleStep("interactive")' class="button button-primary">Learn about interactivity</button>
+            <button ng-show='step !== "full" && !returning' ng-click='toggleStep("interactive")' class="button button-primary">Learn about interactivity</button>
          </div>
       </section>
-      <div class="navbar-spacer"></div>
-      <nav ng-show='returning' class="navbar">
+      <nav ng-show='returning || step === "full"' class="navbar">
          <div class="container">
             <ul class="navbar-list">
                <li class="navbar-item">
@@ -58,7 +53,7 @@
                   <div id="electronicNavPopover" class="popover">
                      <ul class="popover-list">
                         <li class="popover-item">
-                           <a class="popover-link" href="#interactive-definition">Definition</a>
+                           <a class="popover-link" href="#electronic-text">Definition</a>
                         </li>
                         <li class="popover-item">
                            <a class="popover-link" href="#interactive-examples">Examples</a>
@@ -74,7 +69,7 @@
                   <div id="ergodicNavPopover" class="popover">
                      <ul class="popover-list">
                         <li class="popover-item">
-                           <a class="popover-link" href="#interactive-definition">Definition</a>
+                           <a class="popover-link" href="#ergodic-text">Definition</a>
                         </li>
                         <li class="popover-item">
                            <a class="popover-link" href="#interactive-examples">Examples</a>
@@ -90,7 +85,7 @@
                   <div id="interactiveNavPopover" class="popover">
                      <ul class="popover-list">
                         <li class="popover-item">
-                           <a class="popover-link" href="#interactive-definition">Definition</a>
+                           <a class="popover-link" href="#interactive-text">Definition</a>
                         </li>
                         <li class="popover-item">
                            <a class="popover-link" href="#interactive-examples">Examples</a>
@@ -105,109 +100,172 @@
                   </div>
                </li>
                <li class='navbar-item'>
-                  <a class='navbar-link' aria-label='Venn diagram representation of ergodic, electronic, and interactive texts. Contains the same information as the following table' href="#venn-section">Venn diagram</a>
+                  <a class='navbar-link' aria-label='Venn diagram representation of ergodic, electronic, and interactive texts. Contains the same information as the following table' href="#venn">Venn diagram</a>
                </li>
             </ul>
          </div>
       </nav>
-
-      <div ng-show='step === "interactive" || returning' class='row'>
-         <div class='category-header center'>
-            <img class='section-icon' src='images/interactive.png'></img>
-            <p class='underline'>Interactive</p>
-         </div>
-         <div class='center'>
-            <button ng-click='toggleStep("electronic")' class="button button-primary center">Continue to electronic texts</button>
-         </div>
-      </div>
-
-<!--       <div class="value-props row">
-         <div class="four columns value-prop">
-            <img class="value-img" style='height:100px;width:100px' src="images/knot.png">
-            Ergodic
-         </div>
-         <div class="four columns value-prop">
-            <img class="value-img" style='height:100px;width:100px' src="images/electronic.png">
-            Electronic
-         </div>
-         <div class="four columns value-prop">
-            <img class="value-img" style='height:100px;width:100px' src="images/interactive.png">
-            Interactive
-         </div>
-      </div> -->
-      
-      <div ng-show='step === "venn"|| returning' class='row'>
+      <!-- Venn
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <div ng-show='step === "full"|| returning' class='row'>
          <div style='margin-left:150px' id='venn'></div>
       </div>
-      <div ng-show='step === "venn"|| returning'>
-         <h6 href='#venn-table' class="docs-header">Reference table</h6>
-      <p id='table-description'>
-         <span class='indent'></span> One way to categorize the sections of the venn diagram is to assign a value to each type of text - 1 for ergodic, 2 for interactive, and 4 for electronic. If a definition occupies 1 or some areas, we add up the assigned value of each respective circle to find its unique value.
-      </p>
-      <div class="docs-example">
-         <table class="u-full-width">
-            <thead>
-               <tr>
-                  <th>Section</th>
-                  <th>Electronic?</th>
-                  <th>Interactive?</th>
-                  <th>Ergodic?</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <td>0: <a href="" ng-click='presentSweetAlert(0)'>A book ?</a></td>
-                  <td><button disabled aria-label='is electronic' class="button-error">No</button></td>
-                  <td><button disabled aria-label='is interactive' class="button-error">No</button></td>
-                  <td><button disabled aria-label='is ergodic' class="button-error">No</button></td>
-               </tr>
-               <tr>
-                  <td>1: <a ng-click='presentSweetAlert(1)'>Cattle/text interaction</a></td>
-                  <td><button disabled class="button-error">No</button></td>
-                  <td><button disabled class="button-error">No</button></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-               </tr>
-               <tr>
-                  <td>2: <a href="" ng-click='presentSweetAlert(2)'>Human conversation ?</a></td>
-                  <td><button disabled class="button-error">No</button></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-                  <td><button disabled class="button-error">No</button></td>
-               </tr>
-               <tr>
-                  <td>3: <a href="" ng-click='presentSweetAlert(3)'>CYOA ?</a></td>
-                  <td><button disabled class="button-error">No</button></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-               </tr>
-               <tr>
-                  <td>4: <a href="" ng-click='presentSweetAlert(4)'>Wikipedia ?</a></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-                  <td><button disabled class="button-error">No</button></td>
-                  <td><button disabled class="button-error">No</button></td>
-               </tr>
-               <tr>
-                  <td>5: <a href="" ng-click='presentSweetAlert(5)'>???</a></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-                  <td><button disabled class="button-error">No</button></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-               </tr>
-               <tr>
-                  <td>6: <a href='' aria-label='further information regarding electronic, interactive, and non-ergodic texts' ng-click='presentSweetAlert(6)'>IRC</a></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-                  <td><button disabled class="button-error">No</button></td>
-               </tr>
-               <tr>
-                  <td>7: <a href="" aria-label='further information regarding electronic, interactive, and non-ergodic texts' ng-click='presentSweetAlert(7)'>???</a></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-                  <td><button disabled class="button-success">Yes</button></td>
-               </tr>
-            </tbody>
-         </table>
+      <div ng-show='step === "full"|| returning'>
+         <h6 id='venn-table' class="docs-header">Reference table</h6>
+         <p id='table-description'>
+            <span class='indent'></span> One way to categorize the sections of the venn diagram is to assign a value to each type of text - 1 for ergodic, 2 for interactive, and 4 for electronic. If a definition occupies 1 or more areas, we add up the assigned value of each respective circle to find its unique value.
+         </p>
+         <div class="docs-example">
+            <table class="u-full-width">
+               <thead>
+                  <tr>
+                     <th>Example text</th>
+                     <th>Electronic?</th>
+                     <th>Interactive?</th>
+                     <th>Ergodic?</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>0: <a href="" ng-click='presentSweetAlert(0)'>A book</a></td>
+                     <td><button disabled aria-label='is electronic' class="button-error">No</button></td>
+                     <td><button disabled aria-label='is interactive' class="button-error">No</button></td>
+                     <td><button disabled aria-label='is ergodic' class="button-error">No</button></td>
+                  </tr>
+                  <tr>
+                     <td>1: <a href="" ng-click='presentSweetAlert(1)'>Cattle/text interaction</a></td>
+                     <td><button disabled class="button-error">No</button></td>
+                     <td><button disabled class="button-error">No</button></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                  </tr>
+                  <tr>
+                     <td>2: <a href="" ng-click='presentSweetAlert(2)'>In-person conversation</a></td>
+                     <td><button disabled class="button-error">No</button></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                     <td><button disabled class="button-error">No</button></td>
+                  </tr>
+                  <tr>
+                     <td>3: <a href="" ng-click='presentSweetAlert(3)'>Hopscotch</a></td>
+                     <td><button disabled class="button-error">No</button></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                  </tr>
+                  <tr>
+                     <td>4: <a href="" ng-click='presentSweetAlert(4)'>E-book</a></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                     <td><button disabled class="button-error">No</button></td>
+                     <td><button disabled class="button-error">No</button></td>
+                  </tr>
+                  <tr>
+                     <td>5: <a href="" ng-click='presentSweetAlert(5)'>Speaking Clock</a></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                     <td><button disabled class="button-error">No</button></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                  </tr>
+                  <tr>
+                     <td>6: <a href='' aria-label='further information regarding electronic, interactive, and non-ergodic texts' ng-click='presentSweetAlert(6)'>IRC</a></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                     <td><button disabled class="button-error">No</button></td>
+                  </tr>
+                  <tr>
+                     <td>7: <a href="" aria-label='further information regarding electronic, interactive, and non-ergodic texts' ng-click='presentSweetAlert(7)'>The Internet</a></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                     <td><button disabled class="button-success">Yes</button></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
       </div>
+      <!-- Interactive
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <div id='interactive-text' ng-show='step === "interactive" || step === "full"|| returning' class='row'>
+         <div class='category-header center'>
+            <img class='section-icon' src='images/interactive.png'></img>
+            <h3 class='underline'>Interactive texts</h3>
+            <p>"Interactive [text] is a method of communication in which the [text]'s outputs depend on the user's inputs, and the user's inputs in turn affect the [text]'s outputs" (Investopedia, 2016).</p>
+         </div>
+         <!-- Types of interactivity -->
+         <div id='interactive-types'>
+            <h4 class='center underline'>Types of interactivity</h4>
+            <p><span class='indent'></span> Ryan outlines two types of interactivity - interaction facilitated by the medium itself as well as the work. She gives the example of television as a slightly interactive medium - a user has the option to change channels as they see fit (Ryan, 205). Television shows themselves range in interactivity - an example of one of the most types of interactive programs are those where users can directly interact with and influence the show like the <a ng-class='{"black-link": step !== "full" && !returning}' href="https://www.youtube.com/watch?v=xcc3HjE22YA&feature=youtu.be&t=8m37s"><span class='italics'>Washington Journal</span></a> - individuals can call in and speak directly with the hosts and guests. 
+            </p>
+            <p><span class='indent'></span><a ng-class='{"black-link": step !== "full" && !returning}' href="https://www.youtube.com/watch?v=YbOGLGzsN7o&feature=youtu.be&t=38s"><span class='italics'>Dora the Explorer</span></a> is a children's program where the characters often speaks directly to the viewer and encourages them to interact with the program - point out clues to puzzles, stand up and move around, as well as other tasks. While a viewer will not directly influence the program, there are planned lapses and pauses that allow a viewer to reach their own conclusions before the results are revealed.
+            </p>
+            </p><span class='indent'><a ng-class='{"black-link": step !== "full" && !returning}' href="https://www.youtube.com/watch?v=vTZvxT03y1U"><span class='italics'>Luther</span></a> is an example of a non-interactive program - these are the dominating form of programs as they are devoid of any user interaction and just present a story.
+         </div>
+         <!-- Levels of interactivity -->
+         <div>
+            <br><br>
+            <h4 class='center underline'>Levels of interactivity</h4>
+            <p><span class='indent'> "Types of interactivity can also be distinguised on the basis of the freedom granted to the user and the degree of intentionality of his interventions" (Ryan, 205). Ryan provides an example for a reactive work - one which the viewer cannot directly influence but still impacts - as an art installation that may react to the noise level in a room. <a ng-class='{"black-link": step !== "full" && !returning}' href="https://www.youtube.com/watch?v=MHCevkoe7HA"><span class='italics'>Reactive Sound & Light Art Installation</span></a>, by students at Washington State University, utilized motion sensors to trigger sound and video projections.</p>
+            <p><span class='indent'></span>The next level of interactivity is a random selection amongst many alternatives that is triggered by the user. Consider an origami fortune teller - a papercraft where the user selects arbitrary numbers and colors to reveal one panel and subsequently their "fortune". Ryan provides the example of randomly clicking hyperlinks (Ryan, 205).
+            </p>
+            <p><span class='indent'></span>Finally, the most interactive a text can be is when a user "leaves a durable mark on the textual world, either by adding objects to its landscape or by writing its history" (Ryan, 205). Consider video games, where users can save their progress and shape their world like in <a ng-class='{"black-link": step !== "full" && !returning}' href="https://www.youtube.com/watch?v=MmB9b5njVbA"><span class='italics'>Minecraft</span></a> - a game where users have full reign over shaping the landscape - or a coloring book.</p>
+         </div>
+         <div class='center'>
+            <br><br>
+            <button ng-show='step !== "full" && !returning' ng-click='toggleStep("electronic")' class="button button-primary center">Continue to electronic texts</button>
+         </div>
       </div>
-      
+      <!-- Electronic
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <div id="electronic-text" ng-show='step === "electronic" || step === "full" || returning' class='row'>
+         <div class='category-header center'>
+            <img class='section-icon' src='images/electronic.png'></img>
+            <h3 class='underline'>Electronic texts</h3>
+            <p>Any text that is broadcast digitally (Ryan, 209). However, it is worth noting that electronic texts extend beyond just textual content. Ryan includes a number of features which will be explored below.</p>
+         </div>
+         <div>
+            <h4 class='center underline'>Exclusive features of electronic texts</h4>
+            <p><span class='indent'></span>
+            While there are many features of texts that can be replicated in non-electronic and electronic formats, Ryan notes that there are certain features that are much more accessible in a electronic format. 
+            <ul>
+              <li><span class='underline'>Mobility of text</span>: text comes to the user through a display, instead of a user reaching out for a text</li>
+              <li><span class='underline'>Kaleidoscopic</span>: text can be easily rearranged - an example being how text of this page changes on button click</li>
+              <li><span class='underline'>Algorithmic</span>: text is controlled via logic programs that are not readily viewable by the reader</li>
+              <li><span class='underline'>Hypermediacy</span>: text can be expressed in a variety of means - through videos, sounds, and text - hypermedia.</li>
+              <li><span class='underline'>Interrupt Structure</span>: text can be explored in a variety of orders instead of the usual front to back - links on a page can skip the regular progression and flow of reading.</li>
+              <li><span class='underline'>Animation</span>: visual works provide additional context and understanding that can be difficult to replicate in only text.</li>
+              <li><span class='underline'>Temporal Exploration</span>: once a non-electronic text is aquired, barring destruction, it will always be there. The same cannot be said for an electronic text - time can impact what is presented to the user.</li>
+            </ul>
+            - (Ryan, 214-217)
+            </p>
+         </div>
+         <div class='center'>
+            <button ng-show='step !== "full" && !returning' ng-click='toggleStep("ergodic")' class="button button-primary center">Explore ergodic texts</button>
+         </div>
+      </div>
+      <!-- Ergodic
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <div id="ergodic-text" ng-show='step === "ergodic" || step === "full"|| returning' class='row'>
+         <div class='category-header center'>
+            <img class='section-icon' src='images/knot.png'></img>
+            <h3 class='underline'>Ergodic texts</h3>
+            <p>"A class of works in which "non-trivial" effort is required to allow the reader to traverse the text" (Ryan, 206).</p>
+         </div>
+         <div>
+            <h4 class='center underline'>Difference between interactive works</h4>
+            <p>
+               <span class='indent'></span>
+               Ergodic texts may appear to be similar to interactive works - they require effort by the reader to progress. These may seem similar to a progressive video game, however, Ryan distinguishes them further by stating that "ergodic design is a built-in reading protocol involving a feedback loop that enables the text to modify itself, so that a reader will encounter different sequences of signs during different reading sessions" (Ryan, 206).
+            </p>
+            <h4 class='center underline'>Feedback loop</h4>
+            <p>
+               <span class='indent'></span>
+               Thus, there is a clear component to ergodic works - the feedback loop - that add an additional component to the work. Ryan separates the text into three layers: the text that is written, the text that is read, as well as the constructed model of the text in the reader's head (Ryan, 207).
+            </p>
+            <h4 class='center underline'>Examples</h4>
+            <p>
+               <span class='indent'></span>
+               Applying the definition of requiring non-trivial effort, a number of examples exist. Noah Wardrip-Fruin gives the example of ancient Egyptian hieroglyphs - sentences would be scrambled with one another and decoding would require to unravel the work (Wardrip-Fruin). Modern examples include video games like <span class="italics">TinyMUD</span>, a textual video game, and <span class="italics">House of Leaves</span>, a novel by Mark Z. Danielewski. Both of these modern examples can be read linearly but as a user interacts with and traverses the text it takes on new meaning.
+            </p>
+         </div>
+         <div class='center'>
+            <button ng-show='step !== "full" && !returning' ng-click='toggleStep("full")' class="button button-primary center">View full site</button>
+         </div>
+      </div>
    </body>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
    <script src="js/venn.js"></script>

@@ -1,7 +1,7 @@
 .container {
   max-width: 800px; }
 .header {
-  margin-top: 6rem;
+  margin-top: 8rem;
   text-align: center; }
 .value-prop {
   margin-top: 1rem; }
@@ -237,4 +237,23 @@
 }
 .line-break {
   border-bottom: 1px solid #eee;
+}
+.italics {
+  font-style: italic;
+}
+.todo {
+  background-color: yellow;
+}
+.black-link {
+  pointer-events: none;
+  cursor: default;
+  color: black;
+}
+.sweet-img {
+  width:400px;
+  height:400px;
+}
+.sweet-vert-img {
+  width: 300px;
+  height:400px;
 }

@@ -48,7 +48,8 @@ body.stop-scrolling {
     margin: 25px 0;
     padding: 0;
     line-height: 40px;
-    display: block; }
+    display: block;
+    text-decoration: underline; }
   .sweet-alert p {
     color: #797979;
     font-size: 16px;

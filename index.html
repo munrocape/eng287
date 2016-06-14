@@ -56,26 +56,7 @@
                            <a class="popover-link" href="#electronic-text">Definition</a>
                         </li>
                         <li class="popover-item">
-                           <a class="popover-link" href="#interactive-examples">Examples</a>
-                        </li>
-                        <li class="popover-item">
-                           <a class="popover-link" href="#buttons">Motivations for digitality</a>
-                        </li>
-                     </ul>
-                  </div>
-               </li>
-               <li class="navbar-item">
-                  <a class="navbar-link" href="#" data-popover="#ergodicNavPopover">Ergodic</a>
-                  <div id="ergodicNavPopover" class="popover">
-                     <ul class="popover-list">
-                        <li class="popover-item">
-                           <a class="popover-link" href="#ergodic-text">Definition</a>
-                        </li>
-                        <li class="popover-item">
-                           <a class="popover-link" href="#interactive-examples">Examples</a>
-                        </li>
-                        <li class="popover-item">
-                           <a class="popover-link" href="#buttons">Motivations for ergodicity</a>
+                           <a class="popover-link" href="#electronic-features">Features</a>
                         </li>
                      </ul>
                   </div>
@@ -88,13 +69,23 @@
                            <a class="popover-link" href="#interactive-text">Definition</a>
                         </li>
                         <li class="popover-item">
-                           <a class="popover-link" href="#interactive-examples">Examples</a>
+                           <a class="popover-link" href="#interactive-types">Types</a>
                         </li>
                         <li class="popover-item">
-                           <a class="popover-link" href="#interactive-varieties">Varieties of interaction</a>
+                           <a class="popover-link" href="#interactive-levels">Levels</a>
+                        </li>
+                     </ul>
+                  </div>
+               </li>
+               <li class="navbar-item">
+                  <a class="navbar-link" href="#" data-popover="#ergodicNavPopover">Ergodic</a>
+                  <div id="ergodicNavPopover" class="popover">
+                     <ul class="popover-list">
+                        <li class="popover-item">
+                           <a class="popover-link" href="#ergodic-definition">Definition</a>
                         </li>
                         <li class="popover-item">
-                           <a class="popover-link" href="#interactive-motivations">Motivations for interaction</a>
+                           <a class="popover-link" href="#ergodic-feedback">Feedback loop</a>
                         </li>
                      </ul>
                   </div>
@@ -183,16 +174,19 @@
       <div id='interactive-text' ng-show='step === "interactive" || step === "full"|| returning' class='row'>
          <div class='category-header center'>
             <img class='section-icon' src='images/interactive.png'></img>
+            <span id="interactive-types"></span>
             <h3 class='underline'>Interactive texts</h3>
-            <p>"Interactive [text] is a method of communication in which the [text]'s outputs depend on the user's inputs, and the user's inputs in turn affect the [text]'s outputs" (Investopedia, 2016).</p>
+            <br><span>"Interactive [text] is a method of communication in which the [text]'s outputs depend on the user's inputs, and the user's inputs in turn affect the [text]'s outputs" (Investopedia, 2016).</span>
          </div>
+
          <!-- Types of interactivity -->
-         <div id='interactive-types'>
+         <div >
             <h4 class='center underline'>Types of interactivity</h4>
             <p><span class='indent'></span> Ryan outlines two types of interactivity - interaction facilitated by the medium itself as well as the work. She gives the example of television as a slightly interactive medium - a user has the option to change channels as they see fit (Ryan, 205). Television shows themselves range in interactivity - an example of one of the most types of interactive programs are those where users can directly interact with and influence the show like the <a ng-class='{"black-link": step !== "full" && !returning}' href="https://www.youtube.com/watch?v=xcc3HjE22YA&feature=youtu.be&t=8m37s"><span class='italics'>Washington Journal</span></a> - individuals can call in and speak directly with the hosts and guests. 
             </p>
             <p><span class='indent'></span><a ng-class='{"black-link": step !== "full" && !returning}' href="https://www.youtube.com/watch?v=YbOGLGzsN7o&feature=youtu.be&t=38s"><span class='italics'>Dora the Explorer</span></a> is a children's program where the characters often speaks directly to the viewer and encourages them to interact with the program - point out clues to puzzles, stand up and move around, as well as other tasks. While a viewer will not directly influence the program, there are planned lapses and pauses that allow a viewer to reach their own conclusions before the results are revealed.
             </p>
+            <span id='interactive-levels'></span>
             </p><span class='indent'><a ng-class='{"black-link": step !== "full" && !returning}' href="https://www.youtube.com/watch?v=vTZvxT03y1U"><span class='italics'>Luther</span></a> is an example of a non-interactive program - these are the dominating form of programs as they are devoid of any user interaction and just present a story.
          </div>
          <!-- Levels of interactivity -->
@@ -214,6 +208,7 @@
       <div id="electronic-text" ng-show='step === "electronic" || step === "full" || returning' class='row'>
          <div class='category-header center'>
             <img class='section-icon' src='images/electronic.png'></img>
+            <span id='electronic-features'></span>
             <h3 class='underline'>Electronic texts</h3>
             <p>Any text that is broadcast digitally (Ryan, 209). However, it is worth noting that electronic texts extend beyond just textual content. Ryan includes a number of features which will be explored below.</p>
          </div>
@@ -240,12 +235,12 @@
       <!-- Ergodic
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <div id="ergodic-text" ng-show='step === "ergodic" || step === "full"|| returning' class='row'>
-         <div class='category-header center'>
+         <div class='category-header center' id='ergodic-definition'>
             <img class='section-icon' src='images/knot.png'></img>
             <h3 class='underline'>Ergodic texts</h3>
             <p>"A class of works in which "non-trivial" effort is required to allow the reader to traverse the text" (Ryan, 206).</p>
          </div>
-         <div>
+         <div id="ergodic-feedback">
             <h4 class='center underline'>Difference between interactive works</h4>
             <p>
                <span class='indent'></span>
@@ -256,6 +251,7 @@
                <span class='indent'></span>
                Thus, there is a clear component to ergodic works - the feedback loop - that add an additional component to the work. Ryan separates the text into three layers: the text that is written, the text that is read, as well as the constructed model of the text in the reader's head (Ryan, 207).
             </p>
+            <span id="ergodic-examples"></span>
             <h4 class='center underline'>Examples</h4>
             <p>
                <span class='indent'></span>
